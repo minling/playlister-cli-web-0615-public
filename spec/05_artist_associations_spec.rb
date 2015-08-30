@@ -22,6 +22,7 @@ describe Artist do
   describe "with genres" do
     it "can have genres" do
       song.genre = genre
+      # binding.pry
       artist.add_song song
       expect(artist.genres).to include(genre)
     end

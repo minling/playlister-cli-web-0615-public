@@ -9,6 +9,7 @@ describe "LibraryParser" do
 
   it 'loads files from a directory' do
     expect(parser.files).to_not be_empty
+  
     expect(parser.files.size).to eq(99)
   end
 
@@ -22,7 +23,7 @@ describe "LibraryParser" do
   it 'builds a song based on song parts' do
     parts = ['Action Bronson', 'Larry Csonka', 'indie']
     song = parser.build_song(parts[0], parts[1], parts[2])
-
+  
     expect(Artist.find_by_name(parts[0])).to eq(song.artist)
     expect(Song.find_by_name(parts[1])).to eq(song)
     expect(Genre.find_by_name(parts[2])).to eq(song.genre)
@@ -30,7 +31,6 @@ describe "LibraryParser" do
 
   it 'will parse the library' do
     parser.call
-
     expect(Artist.all).to_not be_empty
     expect(Genre.all).to_not be_empty
     expect(Song.all).to_not be_empty
